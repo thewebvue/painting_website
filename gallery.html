@@ -6,6 +6,8 @@
   <title>Photo &amp; Video Gallery | Rithwin's Pro Painters</title>
   <meta name="description" content="Browse photos and videos of wall painting, wood polishing and false ceiling work by Rithwin's Pro Painters.">
   <meta name="theme-color" content="#211F1B">
+  <script>(function(){try{if(sessionStorage.getItem('rppIntroPlayed')){document.documentElement.className+=' intro-skip';}}catch(e){}})();</script>
+  <noscript><style>.intro-overlay{display:none!important}</style></noscript>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,13 +19,90 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
+  <div class="intro-overlay" id="intro-overlay" role="presentation" aria-hidden="true">
+    <button type="button" class="intro-skip-btn" id="intro-skip">Skip</button>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="intro-goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" result="goo"/>
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="intro-stage">
+      <svg class="intro-bucket" viewBox="0 0 200 220" aria-hidden="true">
+        <defs>
+          <linearGradient id="canGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#cfc7b4"/>
+            <stop offset="14%" stop-color="#f6f1e4"/>
+            <stop offset="38%" stop-color="#fffdf8"/>
+            <stop offset="66%" stop-color="#eae3d1"/>
+            <stop offset="100%" stop-color="#b9b096"/>
+          </linearGradient>
+          <linearGradient id="rimGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fffdf8"/>
+            <stop offset="100%" stop-color="#c7bea8"/>
+          </linearGradient>
+          <linearGradient id="bandGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#E08F0F"/>
+            <stop offset="50%" stop-color="#8C5A28"/>
+            <stop offset="100%" stop-color="#135951"/>
+          </linearGradient>
+        </defs>
+
+        <ellipse class="intro-bucket-shadow" cx="100" cy="207" rx="60" ry="11" fill="rgba(20,18,14,.28)"/>
+
+        <g class="intro-bucket-body">
+          <!-- cylindrical can body -->
+          <path d="M44,88 C44,84 44,82 44,80 L44,190 C44,197 68,202 100,202 C132,202 156,197 156,190 L156,80 C156,82 156,84 156,88 Z"
+                fill="url(#canGrad)" stroke="#1a170f" stroke-width="4.5" stroke-linejoin="round"/>
+          <!-- base ellipse for a touch of 3D at the foot -->
+          <path d="M44,186 C44,193 68,198 100,198 C132,198 156,193 156,186" fill="none" stroke="#1a170f" stroke-width="2" opacity=".35"/>
+          <!-- glossy highlight streak -->
+          <path d="M64,96 C58,130 58,160 66,192" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="10" stroke-linecap="round"/>
+          <path d="M148,98 C153,132 152,160 145,190" fill="none" stroke="rgba(20,18,14,.10)" stroke-width="11" stroke-linecap="round"/>
+          <!-- rim -->
+          <ellipse cx="100" cy="80" rx="58" ry="15" fill="url(#rimGrad)" stroke="#1a170f" stroke-width="4.5"/>
+          <!-- wire bail handle -->
+          <path d="M56,74 C56,30 144,30 144,74" fill="none" stroke="#1a170f" stroke-width="4.5" stroke-linecap="round"/>
+          <circle cx="56" cy="74" r="6" fill="#1a170f"/>
+          <circle cx="144" cy="74" r="6" fill="#1a170f"/>
+          <!-- open top with visible (mixed) paint pool -->
+          <ellipse cx="100" cy="78" rx="47" ry="10.5" fill="#1c1811"/>
+          <ellipse cx="100" cy="77" rx="41" ry="8.5" fill="url(#bandGrad)"/>
+          <ellipse cx="86" cy="74" rx="12" ry="3" fill="rgba(255,255,255,.30)"/>
+          <!-- small permanent drips already clinging to the rim, like a can that's just been used -->
+          <path d="M78,90 C75,99 72,108 78,115 C84,108 81,99 78,90 Z" fill="#E08F0F" stroke="#1a170f" stroke-width="2"/>
+          <path d="M129,92 C126,100 124,107 129,113 C134,107 132,100 129,92 Z" fill="#8C5A28" stroke="#1a170f" stroke-width="2"/>
+        </g>
+      </svg>
+
+      <span class="intro-stream intro-stream-1" aria-hidden="true"></span>
+      <span class="intro-stream intro-stream-2" aria-hidden="true"></span>
+      <span class="intro-stream intro-stream-3" aria-hidden="true"></span>
+    </div>
+
+    <div class="intro-splash" aria-hidden="true">
+      <span class="intro-blob intro-blob-paint"></span>
+      <span class="intro-blob intro-blob-wood"></span>
+      <span class="intro-blob intro-blob-ceil"></span>
+    </div>
+
+    <div class="intro-reveal" aria-hidden="true">
+      <span class="intro-brand">Rithwin's Pro Painters</span>
+    </div>
+  </div>
+
   <div class="topbar">
     <div class="container topbar-inner">
       <div class="topbar-links">
         <a href="tel:+919876543210"><i class="fa-solid fa-phone" aria-hidden="true"></i>+91 98765 43210</a>
         <span><i class="fa-solid fa-clock" aria-hidden="true"></i>Mon–Sat, 8:00 AM – 7:00 PM</span>
       </div>
-      <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Serving Polur Taluk &amp; Tiruvannamalai District</span>
+      <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Based in Polur — Projects All Over India</span>
     </div>
   </div>
 
@@ -79,7 +158,7 @@
           </nav>
           <span class="eyebrow-chip"><span class="eyebrow-dot"></span>Gallery</span>
           <h1>Photo &amp; video gallery</h1>
-          <p class="lede">Wall painting, wood polishing and false ceiling work, side by side. Filter by category or open any photo full screen.</p>
+          <p class="lede">Wall painting, wood polishing and false ceiling work, kept in their own sections below. Open any photo full screen — the viewer only browses that one category.</p>
         </div>
         <div class="page-banner-media">
           <img src="https://images.unsplash.com/photo-1474874055390-459bc92357f3?auto=format&fit=crop&w=1000&q=80" alt="A row of freshly painted, colourful building façades" width="1000" height="800" loading="lazy">
@@ -87,89 +166,397 @@
       </div>
     </section>
 
-    <section class="section" id="photos">
+    <div class="gallery-wrap">
+    <div class="gallery-filters container" id="gallery-filters" role="group" aria-label="Jump to a category">
+      <a class="chip" href="#gal-wall">Wall Painting <span class="chip-count">(75)</span></a>
+      <a class="chip" href="#gal-wood">Wood Polish <span class="chip-count">(24)</span></a>
+      <a class="chip" href="#gal-ceiling">False Ceiling <span class="chip-count">(18)</span></a>
+    </div>
+
+    <section class="section" id="gal-wall">
       <div class="container">
-        <div class="gallery-filters" role="group" aria-label="Filter photos by category">
-          <button type="button" class="chip" data-filter="all" aria-pressed="true">All work</button>
-          <button type="button" class="chip" data-filter="wall" aria-pressed="false">Wall Painting</button>
-          <button type="button" class="chip" data-filter="wood" aria-pressed="false">Wood Polish</button>
-          <button type="button" class="chip" data-filter="ceiling" aria-pressed="false">False Ceiling</button>
+        <div class="section-head">
+          <h2>Wall Painting</h2>
+          <p class="lede">Interior and exterior work — surface prep, rolling, cutting-in and colour consultations. Click any photo to open it; the viewer stays inside this category as you go through them.</p>
         </div>
-        <p style="margin:0 0 1.5rem;font-size:.92rem;color:var(--ink-faint)" id="result-count" aria-live="polite">Showing 14 photos</p>
         <div class="gallery-grid">
-          <button type="button" class="gallery-item g-big" data-category="wall" data-caption="Interior wall being rolled with fresh emulsion" data-full="https://images.unsplash.com/photo-1717281234297-3def5ae3eee1?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1717281234297-3def5ae3eee1?auto=format&fit=crop&w=900&q=80" alt="Interior wall being rolled with fresh emulsion" loading="lazy">
-            <span class="tag" style="background:var(--ochre)">Wall Painting</span>
-            <span class="cap">Interior wall being rolled with fresh emulsion</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 1" data-full="assets/p_1.jpeg">
+            <img src="assets/p_1.jpeg" alt="Wall Painting photo 1" loading="lazy">
           </button>
-          <button type="button" class="gallery-item " data-category="ceiling" data-caption="False ceiling with recessed lighting" data-full="https://images.unsplash.com/photo-1745242655021-d0b950c8b0da?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1745242655021-d0b950c8b0da?auto=format&fit=crop&w=650&q=80" alt="False ceiling with recessed lighting" loading="lazy">
-            <span class="tag" style="background:var(--petrol)">False Ceiling</span>
-            <span class="cap">False ceiling with recessed lighting</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 2" data-full="assets/p_2.jpeg">
+            <img src="assets/p_2.jpeg" alt="Wall Painting photo 2" loading="lazy">
           </button>
-          <button type="button" class="gallery-item " data-category="wood" data-caption="A polished wooden dining table" data-full="https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=650&q=80" alt="A polished wooden dining table" loading="lazy">
-            <span class="tag" style="background:var(--wood)">Wood Polish</span>
-            <span class="cap">A polished wooden dining table</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 3" data-full="assets/p_3.jpeg">
+            <img src="assets/p_3.jpeg" alt="Wall Painting photo 3" loading="lazy">
           </button>
-          <button type="button" class="gallery-item " data-category="wall" data-caption="Close-up of a hand rolling paint onto a wall" data-full="https://images.unsplash.com/photo-1693985120993-e9b203ce7631?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1693985120993-e9b203ce7631?auto=format&fit=crop&w=650&q=80" alt="Close-up of a hand rolling paint onto a wall" loading="lazy">
-            <span class="tag" style="background:var(--ochre)">Wall Painting</span>
-            <span class="cap">Close-up of a hand rolling paint onto a wall</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 4" data-full="assets/p_4.jpeg">
+            <img src="assets/p_4.jpeg" alt="Wall Painting photo 4" loading="lazy">
           </button>
-          <button type="button" class="gallery-item g-wide" data-category="ceiling" data-caption="Decorative false ceiling design" data-full="https://images.unsplash.com/photo-1679308315803-690da39d8393?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1679308315803-690da39d8393?auto=format&fit=crop&w=900&q=80" alt="Decorative false ceiling design" loading="lazy">
-            <span class="tag" style="background:var(--petrol)">False Ceiling</span>
-            <span class="cap">Decorative false ceiling design</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 5" data-full="assets/p_5.jpeg">
+            <img src="assets/p_5.jpeg" alt="Wall Painting photo 5" loading="lazy">
           </button>
-          <button type="button" class="gallery-item " data-category="wood" data-caption="A carpenter preparing wood before polishing" data-full="https://images.unsplash.com/photo-1779031242515-205111711b23?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1779031242515-205111711b23?auto=format&fit=crop&w=650&q=80" alt="A carpenter preparing wood before polishing" loading="lazy">
-            <span class="tag" style="background:var(--wood)">Wood Polish</span>
-            <span class="cap">A carpenter preparing wood before polishing</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 6" data-full="assets/p_6.jpeg">
+            <img src="assets/p_6.jpeg" alt="Wall Painting photo 6" loading="lazy">
           </button>
-          <button type="button" class="gallery-item " data-category="wall" data-caption="Paint tin and brush for a colour consultation" data-full="https://images.unsplash.com/photo-1670940094923-6f75e4dc5c3a?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1670940094923-6f75e4dc5c3a?auto=format&fit=crop&w=650&q=80" alt="Paint tin and brush for a colour consultation" loading="lazy">
-            <span class="tag" style="background:var(--ochre)">Wall Painting</span>
-            <span class="cap">Paint tin and brush for a colour consultation</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 7" data-full="assets/p_7.jpeg">
+            <img src="assets/p_7.jpeg" alt="Wall Painting photo 7" loading="lazy">
           </button>
-          <button type="button" class="gallery-item " data-category="ceiling" data-caption="A living room finished with a false ceiling" data-full="https://images.unsplash.com/photo-1768609239321-1cfe14893e80?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1768609239321-1cfe14893e80?auto=format&fit=crop&w=650&q=80" alt="A living room finished with a false ceiling" loading="lazy">
-            <span class="tag" style="background:var(--petrol)">False Ceiling</span>
-            <span class="cap">A living room finished with a false ceiling</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 8" data-full="assets/p_8.jpeg">
+            <img src="assets/p_8.jpeg" alt="Wall Painting photo 8" loading="lazy">
           </button>
-          <button type="button" class="gallery-item g-wide" data-category="wood" data-caption="Close-up of a polished wooden door handle" data-full="https://images.unsplash.com/photo-1710880694426-e42d4714ef98?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1710880694426-e42d4714ef98?auto=format&fit=crop&w=900&q=80" alt="Close-up of a polished wooden door handle" loading="lazy">
-            <span class="tag" style="background:var(--wood)">Wood Polish</span>
-            <span class="cap">Close-up of a polished wooden door handle</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 9" data-full="assets/p_9.jpeg">
+            <img src="assets/p_9.jpeg" alt="Wall Painting photo 9" loading="lazy">
           </button>
-          <button type="button" class="gallery-item " data-category="wall" data-caption="Assorted brushes used for wall painting" data-full="https://images.unsplash.com/photo-1520856990214-7a9e59dd5ff7?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1520856990214-7a9e59dd5ff7?auto=format&fit=crop&w=650&q=80" alt="Assorted brushes used for wall painting" loading="lazy">
-            <span class="tag" style="background:var(--ochre)">Wall Painting</span>
-            <span class="cap">Assorted brushes used for wall painting</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 10" data-full="assets/p_10.jpeg">
+            <img src="assets/p_10.jpeg" alt="Wall Painting photo 10" loading="lazy">
           </button>
-          <button type="button" class="gallery-item " data-category="ceiling" data-caption="Ceiling design with skylights and recessed lighting" data-full="https://images.unsplash.com/photo-1749571598439-d307cce8e870?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1749571598439-d307cce8e870?auto=format&fit=crop&w=650&q=80" alt="Ceiling design with skylights and recessed lighting" loading="lazy">
-            <span class="tag" style="background:var(--petrol)">False Ceiling</span>
-            <span class="cap">Ceiling design with skylights and recessed lighting</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 11" data-full="assets/p_11.jpeg">
+            <img src="assets/p_11.jpeg" alt="Wall Painting photo 11" loading="lazy">
           </button>
-          <button type="button" class="gallery-item " data-category="wall" data-caption="Colour palette and brushes for wall designing" data-full="https://images.unsplash.com/photo-1471666875520-c75081f42081?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1471666875520-c75081f42081?auto=format&fit=crop&w=650&q=80" alt="Colour palette and brushes for wall designing" loading="lazy">
-            <span class="tag" style="background:var(--ochre)">Wall Painting</span>
-            <span class="cap">Colour palette and brushes for wall designing</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 12" data-full="assets/p_12.jpeg">
+            <img src="assets/p_12.jpeg" alt="Wall Painting photo 12" loading="lazy">
           </button>
-          <button type="button" class="gallery-item " data-category="wall" data-caption="Freshly painted exterior building façades" data-full="https://images.unsplash.com/photo-1474874055390-459bc92357f3?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1474874055390-459bc92357f3?auto=format&fit=crop&w=650&q=80" alt="Freshly painted exterior building façades" loading="lazy">
-            <span class="tag" style="background:var(--ochre)">Wall Painting</span>
-            <span class="cap">Freshly painted exterior building façades</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 13" data-full="assets/p_13.jpeg">
+            <img src="assets/p_13.jpeg" alt="Wall Painting photo 13" loading="lazy">
           </button>
-          <button type="button" class="gallery-item " data-category="ceiling" data-caption="A living room with a designer false ceiling" data-full="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=80">
-            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=650&q=80" alt="A living room with a designer false ceiling" loading="lazy">
-            <span class="tag" style="background:var(--petrol)">False Ceiling</span>
-            <span class="cap">A living room with a designer false ceiling</span>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 14" data-full="assets/p_14.jpeg">
+            <img src="assets/p_14.jpeg" alt="Wall Painting photo 14" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 15" data-full="assets/p_15.jpeg">
+            <img src="assets/p_15.jpeg" alt="Wall Painting photo 15" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 16" data-full="assets/p_16.jpeg">
+            <img src="assets/p_16.jpeg" alt="Wall Painting photo 16" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 17" data-full="assets/p_17.jpeg">
+            <img src="assets/p_17.jpeg" alt="Wall Painting photo 17" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 18" data-full="assets/p_18.jpeg">
+            <img src="assets/p_18.jpeg" alt="Wall Painting photo 18" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 19" data-full="assets/p_19.jpeg">
+            <img src="assets/p_19.jpeg" alt="Wall Painting photo 19" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 20" data-full="assets/p_20.jpeg">
+            <img src="assets/p_20.jpeg" alt="Wall Painting photo 20" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 21" data-full="assets/p_21.jpeg">
+            <img src="assets/p_21.jpeg" alt="Wall Painting photo 21" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 22" data-full="assets/p_22.jpeg">
+            <img src="assets/p_22.jpeg" alt="Wall Painting photo 22" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 23" data-full="assets/p_23.jpeg">
+            <img src="assets/p_23.jpeg" alt="Wall Painting photo 23" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 24" data-full="assets/p_24.jpeg">
+            <img src="assets/p_24.jpeg" alt="Wall Painting photo 24" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 25" data-full="assets/p_25.jpeg">
+            <img src="assets/p_25.jpeg" alt="Wall Painting photo 25" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 26" data-full="assets/p_26.jpeg">
+            <img src="assets/p_26.jpeg" alt="Wall Painting photo 26" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 27" data-full="assets/p_27.jpeg">
+            <img src="assets/p_27.jpeg" alt="Wall Painting photo 27" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 28" data-full="assets/p_28.jpeg">
+            <img src="assets/p_28.jpeg" alt="Wall Painting photo 28" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 29" data-full="assets/p_29.jpeg">
+            <img src="assets/p_29.jpeg" alt="Wall Painting photo 29" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 30" data-full="assets/p_30.jpeg">
+            <img src="assets/p_30.jpeg" alt="Wall Painting photo 30" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 31" data-full="assets/p_31.jpeg">
+            <img src="assets/p_31.jpeg" alt="Wall Painting photo 31" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 32" data-full="assets/p_32.jpeg">
+            <img src="assets/p_32.jpeg" alt="Wall Painting photo 32" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 33" data-full="assets/p_33.jpeg">
+            <img src="assets/p_33.jpeg" alt="Wall Painting photo 33" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 34" data-full="assets/p_34.jpeg">
+            <img src="assets/p_34.jpeg" alt="Wall Painting photo 34" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 35" data-full="assets/p_35.jpeg">
+            <img src="assets/p_35.jpeg" alt="Wall Painting photo 35" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 36" data-full="assets/p_36.jpeg">
+            <img src="assets/p_36.jpeg" alt="Wall Painting photo 36" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 37" data-full="assets/p_37.jpeg">
+            <img src="assets/p_37.jpeg" alt="Wall Painting photo 37" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 38" data-full="assets/p_38.jpeg">
+            <img src="assets/p_38.jpeg" alt="Wall Painting photo 38" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 39" data-full="assets/p_39.jpeg">
+            <img src="assets/p_39.jpeg" alt="Wall Painting photo 39" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 40" data-full="assets/p_40.jpeg">
+            <img src="assets/p_40.jpeg" alt="Wall Painting photo 40" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 41" data-full="assets/p_41.jpeg">
+            <img src="assets/p_41.jpeg" alt="Wall Painting photo 41" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 42" data-full="assets/p_42.jpeg">
+            <img src="assets/p_42.jpeg" alt="Wall Painting photo 42" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 43" data-full="assets/p_43.jpeg">
+            <img src="assets/p_43.jpeg" alt="Wall Painting photo 43" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 44" data-full="assets/p_44.jpeg">
+            <img src="assets/p_44.jpeg" alt="Wall Painting photo 44" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 45" data-full="assets/p_45.jpeg">
+            <img src="assets/p_45.jpeg" alt="Wall Painting photo 45" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 46" data-full="assets/p_46.jpeg">
+            <img src="assets/p_46.jpeg" alt="Wall Painting photo 46" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 47" data-full="assets/p_47.jpeg">
+            <img src="assets/p_47.jpeg" alt="Wall Painting photo 47" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 48" data-full="assets/p_48.jpeg">
+            <img src="assets/p_48.jpeg" alt="Wall Painting photo 48" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 49" data-full="assets/p_49.jpeg">
+            <img src="assets/p_49.jpeg" alt="Wall Painting photo 49" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 50" data-full="assets/p_50.jpeg">
+            <img src="assets/p_50.jpeg" alt="Wall Painting photo 50" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 51" data-full="assets/p_51.jpeg">
+            <img src="assets/p_51.jpeg" alt="Wall Painting photo 51" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 52" data-full="assets/p_52.jpeg">
+            <img src="assets/p_52.jpeg" alt="Wall Painting photo 52" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 53" data-full="assets/p_53.jpeg">
+            <img src="assets/p_53.jpeg" alt="Wall Painting photo 53" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 54" data-full="assets/p_54.jpeg">
+            <img src="assets/p_54.jpeg" alt="Wall Painting photo 54" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 55" data-full="assets/p_55.jpeg">
+            <img src="assets/p_55.jpeg" alt="Wall Painting photo 55" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 56" data-full="assets/p_56.jpeg">
+            <img src="assets/p_56.jpeg" alt="Wall Painting photo 56" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 57" data-full="assets/p_57.jpeg">
+            <img src="assets/p_57.jpeg" alt="Wall Painting photo 57" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 58" data-full="assets/p_58.jpeg">
+            <img src="assets/p_58.jpeg" alt="Wall Painting photo 58" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 59" data-full="assets/p_59.jpeg">
+            <img src="assets/p_59.jpeg" alt="Wall Painting photo 59" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 60" data-full="assets/p_60.jpeg">
+            <img src="assets/p_60.jpeg" alt="Wall Painting photo 60" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 61" data-full="assets/p_61.jpeg">
+            <img src="assets/p_61.jpeg" alt="Wall Painting photo 61" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 62" data-full="assets/p_62.jpeg">
+            <img src="assets/p_62.jpeg" alt="Wall Painting photo 62" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 63" data-full="assets/p_63.jpeg">
+            <img src="assets/p_63.jpeg" alt="Wall Painting photo 63" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 64" data-full="assets/p_64.jpeg">
+            <img src="assets/p_64.jpeg" alt="Wall Painting photo 64" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 65" data-full="assets/p_65.jpeg">
+            <img src="assets/p_65.jpeg" alt="Wall Painting photo 65" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 66" data-full="assets/p_66.jpeg">
+            <img src="assets/p_66.jpeg" alt="Wall Painting photo 66" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 67" data-full="assets/p_67.jpeg">
+            <img src="assets/p_67.jpeg" alt="Wall Painting photo 67" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 68" data-full="assets/p_68.jpeg">
+            <img src="assets/p_68.jpeg" alt="Wall Painting photo 68" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 69" data-full="assets/p_69.jpeg">
+            <img src="assets/p_69.jpeg" alt="Wall Painting photo 69" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 70" data-full="assets/p_70.jpeg">
+            <img src="assets/p_70.jpeg" alt="Wall Painting photo 70" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 71" data-full="assets/p_71.jpeg">
+            <img src="assets/p_71.jpeg" alt="Wall Painting photo 71" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 72" data-full="assets/p_72.jpeg">
+            <img src="assets/p_72.jpeg" alt="Wall Painting photo 72" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 73" data-full="assets/p_73.jpeg">
+            <img src="assets/p_73.jpeg" alt="Wall Painting photo 73" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 74" data-full="assets/p_74.jpeg">
+            <img src="assets/p_74.jpeg" alt="Wall Painting photo 74" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wall" data-caption="Wall Painting photo 75" data-full="assets/p_75.jpeg">
+            <img src="assets/p_75.jpeg" alt="Wall Painting photo 75" loading="lazy">
           </button>
         </div>
       </div>
     </section>
+
+    <section class="section section-alt" id="gal-wood">
+      <div class="container">
+        <div class="section-head">
+          <h2>Wood Polish</h2>
+          <p class="lede">Doors, furniture and fittings, sanded back and refinished.</p>
+        </div>
+        <div class="gallery-grid">
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 1" data-full="assets/w_1.jpeg">
+            <img src="assets/w_1.jpeg" alt="Wood Polish photo 1" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 2" data-full="assets/w_2.jpeg">
+            <img src="assets/w_2.jpeg" alt="Wood Polish photo 2" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 3" data-full="assets/w_3.jpeg">
+            <img src="assets/w_3.jpeg" alt="Wood Polish photo 3" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 4" data-full="assets/w_4.jpeg">
+            <img src="assets/w_4.jpeg" alt="Wood Polish photo 4" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 5" data-full="assets/w_5.jpeg">
+            <img src="assets/w_5.jpeg" alt="Wood Polish photo 5" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 6" data-full="assets/w_6.jpeg">
+            <img src="assets/w_6.jpeg" alt="Wood Polish photo 6" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 7" data-full="assets/w_7.jpeg">
+            <img src="assets/w_7.jpeg" alt="Wood Polish photo 7" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 8" data-full="assets/w_8.jpeg">
+            <img src="assets/w_8.jpeg" alt="Wood Polish photo 8" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 9" data-full="assets/w_9.jpeg">
+            <img src="assets/w_9.jpeg" alt="Wood Polish photo 9" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 10" data-full="assets/w_10.jpeg">
+            <img src="assets/w_10.jpeg" alt="Wood Polish photo 10" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 11" data-full="assets/w_11.jpeg">
+            <img src="assets/w_11.jpeg" alt="Wood Polish photo 11" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 12" data-full="assets/w_12.jpeg">
+            <img src="assets/w_12.jpeg" alt="Wood Polish photo 12" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 13" data-full="assets/w_13.jpeg">
+            <img src="assets/w_13.jpeg" alt="Wood Polish photo 13" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 14" data-full="assets/w_14.jpeg">
+            <img src="assets/w_14.jpeg" alt="Wood Polish photo 14" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 15" data-full="assets/w_15.jpeg">
+            <img src="assets/w_15.jpeg" alt="Wood Polish photo 15" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 16" data-full="assets/w_16.jpeg">
+            <img src="assets/w_16.jpeg" alt="Wood Polish photo 16" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 17" data-full="assets/w_17.jpeg">
+            <img src="assets/w_17.jpeg" alt="Wood Polish photo 17" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 18" data-full="assets/w_18.jpeg">
+            <img src="assets/w_18.jpeg" alt="Wood Polish photo 18" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 19" data-full="assets/w_19.jpeg">
+            <img src="assets/w_19.jpeg" alt="Wood Polish photo 19" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 20" data-full="assets/w_20.jpeg">
+            <img src="assets/w_20.jpeg" alt="Wood Polish photo 20" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 21" data-full="assets/w_21.jpeg">
+            <img src="assets/w_21.jpeg" alt="Wood Polish photo 21" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 22" data-full="assets/w_22.jpeg">
+            <img src="assets/w_22.jpeg" alt="Wood Polish photo 22" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 23" data-full="assets/w_23.jpeg">
+            <img src="assets/w_23.jpeg" alt="Wood Polish photo 23" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="wood" data-caption="Wood Polish photo 24" data-full="assets/w_24.jpeg">
+            <img src="assets/w_24.jpeg" alt="Wood Polish photo 24" loading="lazy">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gal-ceiling">
+      <div class="container">
+        <div class="section-head">
+          <h2>False Ceiling</h2>
+          <p class="lede">Gypsum and POP ceiling designs with cove and recessed lighting layouts.</p>
+        </div>
+        <div class="gallery-grid">
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 1" data-full="assets/s_1.jpeg">
+            <img src="assets/s_1.jpeg" alt="False Ceiling photo 1" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 2" data-full="assets/s_2.jpeg">
+            <img src="assets/s_2.jpeg" alt="False Ceiling photo 2" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 3" data-full="assets/s_3.jpeg">
+            <img src="assets/s_3.jpeg" alt="False Ceiling photo 3" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 4" data-full="assets/s_4.jpeg">
+            <img src="assets/s_4.jpeg" alt="False Ceiling photo 4" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 5" data-full="assets/s_5.jpeg">
+            <img src="assets/s_5.jpeg" alt="False Ceiling photo 5" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 6" data-full="assets/s_6.jpeg">
+            <img src="assets/s_6.jpeg" alt="False Ceiling photo 6" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 7" data-full="assets/s_7.jpeg">
+            <img src="assets/s_7.jpeg" alt="False Ceiling photo 7" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 8" data-full="assets/s_8.jpeg">
+            <img src="assets/s_8.jpeg" alt="False Ceiling photo 8" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 9" data-full="assets/s_9.jpeg">
+            <img src="assets/s_9.jpeg" alt="False Ceiling photo 9" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 10" data-full="assets/s_10.jpeg">
+            <img src="assets/s_10.jpeg" alt="False Ceiling photo 10" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 11" data-full="assets/s_11.jpeg">
+            <img src="assets/s_11.jpeg" alt="False Ceiling photo 11" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 12" data-full="assets/s_12.jpeg">
+            <img src="assets/s_12.jpeg" alt="False Ceiling photo 12" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 13" data-full="assets/s_13.jpeg">
+            <img src="assets/s_13.jpeg" alt="False Ceiling photo 13" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 14" data-full="assets/s_14.jpeg">
+            <img src="assets/s_14.jpeg" alt="False Ceiling photo 14" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 15" data-full="assets/s_15.jpeg">
+            <img src="assets/s_15.jpeg" alt="False Ceiling photo 15" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 16" data-full="assets/s_16.jpeg">
+            <img src="assets/s_16.jpeg" alt="False Ceiling photo 16" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 17" data-full="assets/s_17.jpeg">
+            <img src="assets/s_17.jpeg" alt="False Ceiling photo 17" loading="lazy">
+          </button>
+          <button type="button" class="gallery-item" data-category="ceiling" data-caption="False Ceiling photo 18" data-full="assets/s_18.jpeg">
+            <img src="assets/s_18.jpeg" alt="False Ceiling photo 18" loading="lazy">
+          </button>
+        </div>
+      </div>
+    </section>
+    </div><!-- /.gallery-wrap -->
 
     <section class="section section-alt" id="videos">
       <div class="container">
@@ -180,41 +567,54 @@
         <div class="video-grid">
           <div class="video-card">
             <div class="video-frame">
-              <!-- TODO: replace the src below with the real Wall Painting Walkthrough video once it's ready -->
-              <video id="v-g-wall" controls preload="metadata" poster="https://images.unsplash.com/photo-1717281234297-3def5ae3eee1?auto=format&fit=crop&w=900&q=80">
-                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-                Your browser does not support embedded video. <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Download the video</a> instead.
+              <!-- TODO: replace the src below with the real Wall Painting Video 1 video once it's ready -->
+              <video id="v-g-wall-1" controls preload="metadata" poster="assets/p_1.jpeg">
+                <source src="assets/vid_p_1.mp4" type="video/mp4">
+                Your browser does not support embedded video. <a href="assets/vid_p_1.mp4">Download the video</a> instead.
               </video>
             </div>
             <div class="video-card-body">
-              <h3>Wall Painting Walkthrough</h3>
-              <p>A placeholder clip for now — swap this for real wall painting footage.</p>
+              <h3>Wall Painting Video 1</h3>
+              <p>Placeholder clip — swap in your own footage with the same file name.</p>
             </div>
           </div>
           <div class="video-card">
             <div class="video-frame">
-              <!-- TODO: replace the src below with the real Wood Polishing in Progress video once it's ready -->
-              <video id="v-g-wood" controls preload="metadata" poster="https://images.unsplash.com/photo-1779031242515-205111711b23?auto=format&fit=crop&w=900&q=80">
-                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-                Your browser does not support embedded video. <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Download the video</a> instead.
+              <!-- TODO: replace the src below with the real Wall Painting Video 2 video once it's ready -->
+              <video id="v-g-wall-2" controls preload="metadata" poster="assets/p_2.jpeg">
+                <source src="assets/vid_p_2.mp4" type="video/mp4">
+                Your browser does not support embedded video. <a href="assets/vid_p_2.mp4">Download the video</a> instead.
               </video>
             </div>
             <div class="video-card-body">
-              <h3>Wood Polishing in Progress</h3>
-              <p>A placeholder clip for now — swap this for real wood polishing footage.</p>
+              <h3>Wall Painting Video 2</h3>
+              <p>Placeholder clip — swap in your own footage with the same file name.</p>
             </div>
           </div>
           <div class="video-card">
             <div class="video-frame">
-              <!-- TODO: replace the src below with the real False Ceiling Installation video once it's ready -->
-              <video id="v-g-ceil" controls preload="metadata" poster="https://images.unsplash.com/photo-1679308315803-690da39d8393?auto=format&fit=crop&w=900&q=80">
-                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-                Your browser does not support embedded video. <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Download the video</a> instead.
+              <!-- TODO: replace the src below with the real Wall Painting Video 3 video once it's ready -->
+              <video id="v-g-wall-3" controls preload="metadata" poster="assets/p_3.jpeg">
+                <source src="assets/vid_p_3.mp4" type="video/mp4">
+                Your browser does not support embedded video. <a href="assets/vid_p_3.mp4">Download the video</a> instead.
               </video>
             </div>
             <div class="video-card-body">
-              <h3>False Ceiling Installation</h3>
-              <p>A placeholder clip for now — swap this for real false ceiling footage.</p>
+              <h3>Wall Painting Video 3</h3>
+              <p>Placeholder clip — swap in your own footage with the same file name.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-frame">
+              <!-- TODO: replace the src below with the real Wall Painting Video 4 video once it's ready -->
+              <video id="v-g-wall-4" controls preload="metadata" poster="assets/p_4.jpeg">
+                <source src="assets/vid_p_4.mp4" type="video/mp4">
+                Your browser does not support embedded video. <a href="assets/vid_p_4.mp4">Download the video</a> instead.
+              </video>
+            </div>
+            <div class="video-card-body">
+              <h3>Wall Painting Video 4</h3>
+              <p>Placeholder clip — swap in your own footage with the same file name.</p>
             </div>
           </div>
         </div>
@@ -251,7 +651,7 @@
         </svg>
             <span class="brand-text"><span class="brand-name">Rithwin's</span><span class="brand-sub">PRO PAINTERS</span></span>
           </a>
-          <p>Wall painting, wood polishing and false ceiling work for homes and shops across Polur taluk.</p>
+          <p>Wall painting, wood polishing and false ceiling work for homes and shops — based in Polur, working across India.</p>
           <div class="footer-address">
             <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Near Bus Stand, Kannigapuram, Polur Taluk, Tiruvannamalai District, Tamil Nadu – 606903</span>
             <span><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+919876543210">+91 98765 43210</a></span>
