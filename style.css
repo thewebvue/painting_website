@@ -223,6 +223,153 @@ p { text-wrap: pretty; }
 }
 .nav-backdrop.is-visible { opacity: 1; visibility: visible; }
 
+/* ---------- Intro / preloader animation (paint bucket pour) ----------
+   Plays once per browser session, on whichever page is opened first.
+   html.intro-skip (set by an inline script in <head>, before this
+   stylesheet or the overlay markup even paint) hides it instantly on
+   every page after that, with no flash.
+
+   Sequence: a big, shaded paint bucket tips over -> three brand-colour
+   streams pour from it -> the streams land and burst into three gooey
+   blobs that merge and swell to swallow the screen -> the brand name
+   wipes on, brush-stroke style, over the mixed colour -> the whole
+   overlay dissolves to reveal the site. */
+.intro-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: var(--canvas-dim); overflow: hidden;
+}
+html.intro-skip .intro-overlay { display: none !important; }
+
+.intro-skip-btn {
+  position: absolute; right: 1.5rem; bottom: 1.5rem; z-index: 6;
+  padding: .5rem 1.1rem; border: 1px solid var(--line); border-radius: 999px;
+  font-size: .82rem; font-weight: 600; color: var(--ink-soft); background: rgba(255, 255, 255, .75);
+  opacity: 0; animation: intro-skip-in .4s ease .9s forwards;
+}
+.intro-skip-btn:hover { color: var(--ink); border-color: var(--ochre-deep); }
+@keyframes intro-skip-in { to { opacity: 1; } }
+
+/* -- Bucket stage -- */
+.intro-stage {
+  position: absolute; left: 50%; top: 12vh; z-index: 2;
+  width: clamp(210px, 27vw, 340px); height: clamp(230px, 29vw, 370px);
+  transform: translateX(-50%) translateY(14px) scale(.92); opacity: 0;
+}
+.intro-overlay.is-enter .intro-stage,
+.intro-overlay.is-tip .intro-stage { animation: intro-stage-in .5s var(--ease) forwards; }
+@keyframes intro-stage-in { to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); } }
+/* fill-mode "both" + an explicit "from" keeps the stage visible (opacity 1,
+   settled position) through the .15s delay -- without "both" here, this
+   later (equal-specificity) rule would win the cascade the instant
+   is-splash is added and the stage would snap invisible immediately,
+   before its own fade-out even starts. */
+.intro-overlay.is-splash .intro-stage { animation: intro-stage-out .55s ease-in .15s both; }
+@keyframes intro-stage-out {
+  from { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateX(-50%) translateY(-6px) scale(1.03); }
+}
+
+.intro-bucket { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.intro-bucket-shadow { transform-origin: 50% 50%; }
+.intro-bucket-body { transform-box: fill-box; transform-origin: 50% 100%; }
+/* The can now stays upright the whole time (matching a real paint-can photo
+   overflowing at the rim) instead of tipping over -- a bottom-anchored
+   squash-and-stretch "thump" reads as it settling into place, rather than
+   the earlier full rotation, which pulled the pour point away from the
+   fixed drips below and looked disconnected. */
+.intro-overlay.is-tip .intro-bucket-body,
+.intro-overlay.is-splash .intro-bucket-body { animation: intro-bucket-settle .6s cubic-bezier(.34, 1.56, .64, 1) .05s both; }
+@keyframes intro-bucket-settle {
+  0%   { transform: scale(1, 1); }
+  40%  { transform: scale(1.05, .93); }
+  70%  { transform: scale(.97, 1.04); }
+  100% { transform: scale(1, 1); }
+}
+.intro-overlay.is-tip .intro-bucket-shadow,
+.intro-overlay.is-splash .intro-bucket-shadow { animation: intro-shadow-pulse .6s cubic-bezier(.34, 1.56, .64, 1) .05s both; }
+@keyframes intro-shadow-pulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.1, .88); }
+  100% { transform: scale(1); }
+}
+
+/* -- Three streams overflowing the rim and running down the can's front,
+   into the puddle below -- the can no longer tips, so these sit at fixed
+   points across the rim's front edge (cx=100,rx=58 in the 200x220
+   viewBox), same spot the two permanent drip accents hang from. */
+.intro-stream {
+  position: absolute; top: 33%; width: 12px; height: 0; border-radius: 3px 3px 50% 50% / 3px 3px 65% 65%;
+  opacity: 0; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .12));
+}
+.intro-stream-1 { left: 35%; background: linear-gradient(180deg, var(--ochre), var(--ochre-deep)); }
+.intro-stream-2 { left: 50%; background: linear-gradient(180deg, var(--wood), var(--wood-deep)); }
+.intro-stream-3 { left: 65%; background: linear-gradient(180deg, var(--petrol), var(--petrol-deep)); }
+.intro-overlay.is-tip .intro-stream,
+.intro-overlay.is-splash .intro-stream { animation-name: intro-stream-grow; animation-duration: .6s; animation-timing-function: ease-in; animation-fill-mode: forwards; }
+.intro-overlay.is-tip .intro-stream-1, .intro-overlay.is-splash .intro-stream-1 { animation-delay: .28s; }
+.intro-overlay.is-tip .intro-stream-2, .intro-overlay.is-splash .intro-stream-2 { animation-delay: .36s; }
+.intro-overlay.is-tip .intro-stream-3, .intro-overlay.is-splash .intro-stream-3 { animation-delay: .44s; }
+@keyframes intro-stream-grow {
+  0%   { height: 0; opacity: 0; }
+  8%   { opacity: 1; }
+  100% { height: 44vh; opacity: 1; }
+}
+
+/* -- Splash: three gooey blobs that merge and swell to cover the screen -- */
+.intro-splash {
+  position: absolute; left: 50%; top: 64vh; z-index: 1;
+  width: 1px; height: 1px;
+  filter: url(#intro-goo);
+}
+.intro-blob {
+  position: absolute; top: 0; border-radius: 50%;
+  width: 30vmin; height: 30vmin; transform: translate(-50%, -50%) scale(0);
+}
+/* Each blob is fully opaque and stacks in paint order (paint -> wood -> ceil),
+   so as they swell, colours genuinely swallow one another the way wet paint
+   does when poured in sequence, settling into a single flat petrol backdrop
+   once the last (biggest, on-top) colour has covered the screen -- a clean
+   brand-colour stage for the wipe-on brand name, rather than a mix-blend
+   result, which (tried and rejected) crushes three saturated colours down
+   to a muddy near-black once they fully overlap. */
+.intro-blob-paint { left: -9vmin; background: var(--ochre); mix-blend-mode: multiply; }
+.intro-blob-wood  { left: 6vmin;  background: var(--wood); mix-blend-mode: multiply; }
+.intro-blob-ceil  { left: 21vmin; background: var(--petrol); } /* normal blend: cleanly covers the mix once fully grown */
+.intro-overlay.is-splash .intro-blob { animation-name: intro-blob-grow; animation-duration: 1.1s; animation-timing-function: cubic-bezier(.36, 0, .3, 1); animation-fill-mode: forwards; }
+.intro-overlay.is-splash .intro-blob-paint { animation-delay: 0s; }
+.intro-overlay.is-splash .intro-blob-wood  { animation-delay: .1s; }
+.intro-overlay.is-splash .intro-blob-ceil  { animation-delay: .2s; }
+@keyframes intro-blob-grow {
+  0%   { transform: translate(-50%, -50%) scale(0); }
+  22%  { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(-50%, -50%) scale(16); }
+}
+
+/* -- Brand name, wiped on like a roller stroke over the mixed colour -- */
+.intro-reveal {
+  position: fixed; inset: 0; z-index: 4;
+  display: flex; align-items: center; justify-content: center; padding-inline: 1.5rem;
+}
+.intro-brand {
+  font-family: var(--font-display); font-weight: 800; color: var(--white);
+  font-size: clamp(1.7rem, 5.6vw, 3.4rem); letter-spacing: -.01em; text-align: center;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, .22);
+  clip-path: inset(0 100% 0 0);
+}
+.intro-overlay.is-reveal .intro-brand { animation: intro-brand-wipe .85s cubic-bezier(.65, 0, .35, 1) forwards; }
+@keyframes intro-brand-wipe { to { clip-path: inset(0 0 0 0); } }
+
+/* -- Exit: the whole overlay dissolves away -- */
+.intro-overlay.is-exit { animation: intro-exit .55s ease-in forwards; }
+@keyframes intro-exit { to { opacity: 0; } }
+
+.intro-overlay.is-skip { transition: opacity .35s ease; opacity: 0; }
+.intro-overlay.is-skip * { animation: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-overlay { display: none !important; }
+}
+
 /* ---------- WhatsApp floating button ---------- */
 .wa-float {
   position: fixed; right: clamp(1rem, 3vw, 1.75rem); bottom: clamp(1rem, 3vw, 1.75rem); z-index: 120;
@@ -392,40 +539,39 @@ p { text-wrap: pretty; }
 .stars { color: var(--ochre); font-size: .85rem; margin-bottom: .75rem; }
 
 /* ---------- Gallery ---------- */
-.gallery-filters { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2rem; }
+/* .gallery-wrap holds the sticky jump-nav plus all three category
+   sections as DIRECT children -- position:sticky can only stay pinned for
+   as long as its own parent box is on screen, so the filters bar's parent
+   here spans the full wall+wood+ceiling scroll range. It un-sticks once
+   you scroll past the false-ceiling section, which is the point: it stays
+   put while you're browsing the gallery, not forever. */
+.gallery-wrap { padding-top: clamp(2rem, 5vw, 3.5rem); }
+.gallery-filters {
+  position: sticky; top: var(--header-h); z-index: 90;
+  display: flex; flex-wrap: wrap; gap: .6rem;
+  padding-block: 1rem; margin-bottom: 1.5rem;
+  background: var(--canvas);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s, box-shadow .3s;
+}
+.gallery-filters.is-stuck { border-color: var(--line); box-shadow: 0 8px 20px rgba(33, 31, 27, .08); }
 .chip {
+  display: inline-block; text-decoration: none;
   padding: .55rem 1.2rem; border: 1px solid var(--line); border-radius: 999px;
   background: var(--white); color: var(--ink-soft); font-size: .9rem; font-weight: 600;
   transition: background-color .25s, color .25s, border-color .25s, transform .25s var(--ease);
 }
 .chip:hover { border-color: var(--ochre-deep); color: var(--ink); transform: translateY(-2px); }
-.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--white); }
+.chip.is-active { background: var(--ink); border-color: var(--ink); color: var(--white); }
+.chip-count { opacity: .6; font-weight: 500; }
 
-.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(150px, 19vw, 230px); grid-auto-flow: dense; gap: 12px; }
-.g-big { grid-column: span 2; grid-row: span 2; }
-.g-wide { grid-column: span 2; }
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(150px, 19vw, 230px); gap: 12px; }
 .gallery-item {
   position: relative; padding: 0; overflow: hidden; border-radius: 8px; background: var(--ink); cursor: zoom-in;
 }
+/* Photo only -- no tag chip or caption overlay on the card itself. */
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease); }
-.gallery-item::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(0deg, rgba(33, 31, 27, .82), transparent 55%);
-  opacity: 0; transition: opacity .4s;
-}
 .gallery-item:hover img, .gallery-item:focus-visible img { transform: scale(1.07); }
-.gallery-item:hover::after, .gallery-item:focus-visible::after { opacity: 1; }
-.gallery-item .cap {
-  position: absolute; z-index: 2; left: 1rem; right: 1rem; bottom: .9rem;
-  color: var(--white); font-size: .88rem; text-align: left;
-  opacity: 0; transform: translateY(8px); transition: opacity .4s, transform .4s var(--ease);
-}
-.gallery-item .tag {
-  position: absolute; z-index: 2; top: .8rem; left: .8rem;
-  padding: .3rem .7rem; border-radius: 999px; font-size: .74rem; font-weight: 700; color: var(--white);
-}
-.gallery-item:hover .cap, .gallery-item:focus-visible .cap { opacity: 1; transform: none; }
-@media (hover: none) { .gallery-item::after { opacity: 1; } .gallery-item .cap { opacity: 1; transform: none; } }
 
 /* ---------- Lightbox ---------- */
 .lightbox {
@@ -590,7 +736,6 @@ p { text-wrap: pretty; }
 
 @media (max-width: 800px) {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: clamp(150px, 34vw, 230px); }
-  .g-big { grid-row: span 2; }
   .lb-prev, .lb-next { top: auto; bottom: 1.25rem; margin-top: 0; }
   .lb-prev { left: calc(50% - 62px); }
   .lb-next { right: calc(50% - 62px); }
@@ -608,7 +753,6 @@ p { text-wrap: pretty; }
 
 @media (max-width: 480px) {
   .gallery-grid { grid-template-columns: 1fr; }
-  .g-big, .g-wide { grid-column: span 1; }
   .hero-stats { gap: 1.5rem; }
 }
 
