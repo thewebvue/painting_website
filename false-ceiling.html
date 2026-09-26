@@ -6,6 +6,8 @@
   <title>False Ceiling Work | Rithwin's Pro Painters</title>
   <meta name="description" content="Gypsum board and POP false ceilings with cove lighting layouts, planned with your electrician, around Polur and Tiruvannamalai district.">
   <meta name="theme-color" content="#211F1B">
+  <script>(function(){try{if(sessionStorage.getItem('rppIntroPlayed')){document.documentElement.className+=' intro-skip';}}catch(e){}})();</script>
+  <noscript><style>.intro-overlay{display:none!important}</style></noscript>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,13 +19,90 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
+  <div class="intro-overlay" id="intro-overlay" role="presentation" aria-hidden="true">
+    <button type="button" class="intro-skip-btn" id="intro-skip">Skip</button>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="intro-goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" result="goo"/>
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="intro-stage">
+      <svg class="intro-bucket" viewBox="0 0 200 220" aria-hidden="true">
+        <defs>
+          <linearGradient id="canGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#cfc7b4"/>
+            <stop offset="14%" stop-color="#f6f1e4"/>
+            <stop offset="38%" stop-color="#fffdf8"/>
+            <stop offset="66%" stop-color="#eae3d1"/>
+            <stop offset="100%" stop-color="#b9b096"/>
+          </linearGradient>
+          <linearGradient id="rimGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fffdf8"/>
+            <stop offset="100%" stop-color="#c7bea8"/>
+          </linearGradient>
+          <linearGradient id="bandGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#E08F0F"/>
+            <stop offset="50%" stop-color="#8C5A28"/>
+            <stop offset="100%" stop-color="#135951"/>
+          </linearGradient>
+        </defs>
+
+        <ellipse class="intro-bucket-shadow" cx="100" cy="207" rx="60" ry="11" fill="rgba(20,18,14,.28)"/>
+
+        <g class="intro-bucket-body">
+          <!-- cylindrical can body -->
+          <path d="M44,88 C44,84 44,82 44,80 L44,190 C44,197 68,202 100,202 C132,202 156,197 156,190 L156,80 C156,82 156,84 156,88 Z"
+                fill="url(#canGrad)" stroke="#1a170f" stroke-width="4.5" stroke-linejoin="round"/>
+          <!-- base ellipse for a touch of 3D at the foot -->
+          <path d="M44,186 C44,193 68,198 100,198 C132,198 156,193 156,186" fill="none" stroke="#1a170f" stroke-width="2" opacity=".35"/>
+          <!-- glossy highlight streak -->
+          <path d="M64,96 C58,130 58,160 66,192" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="10" stroke-linecap="round"/>
+          <path d="M148,98 C153,132 152,160 145,190" fill="none" stroke="rgba(20,18,14,.10)" stroke-width="11" stroke-linecap="round"/>
+          <!-- rim -->
+          <ellipse cx="100" cy="80" rx="58" ry="15" fill="url(#rimGrad)" stroke="#1a170f" stroke-width="4.5"/>
+          <!-- wire bail handle -->
+          <path d="M56,74 C56,30 144,30 144,74" fill="none" stroke="#1a170f" stroke-width="4.5" stroke-linecap="round"/>
+          <circle cx="56" cy="74" r="6" fill="#1a170f"/>
+          <circle cx="144" cy="74" r="6" fill="#1a170f"/>
+          <!-- open top with visible (mixed) paint pool -->
+          <ellipse cx="100" cy="78" rx="47" ry="10.5" fill="#1c1811"/>
+          <ellipse cx="100" cy="77" rx="41" ry="8.5" fill="url(#bandGrad)"/>
+          <ellipse cx="86" cy="74" rx="12" ry="3" fill="rgba(255,255,255,.30)"/>
+          <!-- small permanent drips already clinging to the rim, like a can that's just been used -->
+          <path d="M78,90 C75,99 72,108 78,115 C84,108 81,99 78,90 Z" fill="#E08F0F" stroke="#1a170f" stroke-width="2"/>
+          <path d="M129,92 C126,100 124,107 129,113 C134,107 132,100 129,92 Z" fill="#8C5A28" stroke="#1a170f" stroke-width="2"/>
+        </g>
+      </svg>
+
+      <span class="intro-stream intro-stream-1" aria-hidden="true"></span>
+      <span class="intro-stream intro-stream-2" aria-hidden="true"></span>
+      <span class="intro-stream intro-stream-3" aria-hidden="true"></span>
+    </div>
+
+    <div class="intro-splash" aria-hidden="true">
+      <span class="intro-blob intro-blob-paint"></span>
+      <span class="intro-blob intro-blob-wood"></span>
+      <span class="intro-blob intro-blob-ceil"></span>
+    </div>
+
+    <div class="intro-reveal" aria-hidden="true">
+      <span class="intro-brand">Rithwin's Pro Painters</span>
+    </div>
+  </div>
+
   <div class="topbar">
     <div class="container topbar-inner">
       <div class="topbar-links">
         <a href="tel:+919876543210"><i class="fa-solid fa-phone" aria-hidden="true"></i>+91 98765 43210</a>
         <span><i class="fa-solid fa-clock" aria-hidden="true"></i>Mon–Sat, 8:00 AM – 7:00 PM</span>
       </div>
-      <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Serving Polur Taluk &amp; Tiruvannamalai District</span>
+      <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Based in Polur — Projects All Over India</span>
     </div>
   </div>
 
@@ -269,7 +348,7 @@
         </svg>
             <span class="brand-text"><span class="brand-name">Rithwin's</span><span class="brand-sub">PRO PAINTERS</span></span>
           </a>
-          <p>Wall painting, wood polishing and false ceiling work for homes and shops across Polur taluk.</p>
+          <p>Wall painting, wood polishing and false ceiling work for homes and shops — based in Polur, working across India.</p>
           <div class="footer-address">
             <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Near Bus Stand, Kannigapuram, Polur Taluk, Tiruvannamalai District, Tamil Nadu – 606903</span>
             <span><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+919876543210">+91 98765 43210</a></span>
