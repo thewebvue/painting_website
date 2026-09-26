@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Photo &amp; Video Gallery | Rithwin's Pro Painters</title>
+  <meta name="description" content="Browse photos and videos of wall painting, wood polishing and false ceiling work by Rithwin's Pro Painters.">
+  <meta name="theme-color" content="#211F1B">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-links">
+        <a href="tel:+919876543210"><i class="fa-solid fa-phone" aria-hidden="true"></i>+91 98765 43210</a>
+        <span><i class="fa-solid fa-clock" aria-hidden="true"></i>Mon–Sat, 8:00 AM – 7:00 PM</span>
+      </div>
+      <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Serving Polur Taluk &amp; Tiruvannamalai District</span>
+    </div>
+  </div>
+
+  <header class="site-header" id="header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand" aria-label="Rithwin's Pro Painters, home">
+        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <rect x="6" y="8" width="28" height="12" rx="4" fill="none" stroke="#211F1B" stroke-width="1.6"/>
+          <rect x="7.2" y="9.2" width="8.5" height="9.6" fill="#E08F0F"/>
+          <rect x="15.7" y="9.2" width="8.5" height="9.6" fill="#8C5A28"/>
+          <rect x="24.2" y="9.2" width="8.5" height="9.6" fill="#135951"/>
+          <path d="M20 20 L20 26 L27 33" stroke="#211F1B" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <circle cx="27" cy="33" r="2.3" fill="#211F1B"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Rithwin's</span>
+          <span class="brand-sub">PRO PAINTERS</span>
+        </span>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu" aria-label="Primary">
+        <ul class="nav-links">
+          <li><a class="nav-link" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="wall-painting.html">Wall Painting</a></li>
+          <li><a class="nav-link" href="wood-polish.html">Wood Polish</a></li>
+          <li><a class="nav-link" href="false-ceiling.html">False Ceiling</a></li>
+          <li><a class="nav-link is-active" href="gallery.html" aria-current="page">Gallery</a></li>
+          <li><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <a href="tel:+919876543210" class="btn btn-ochre nav-cta-mobile">Call Now</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="tel:+919876543210" class="btn btn-ochre btn-sm nav-cta">Call Now</a>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="nav-backdrop"></div>
+
+  <a class="wa-float" href="https://wa.me/919876543210" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <main id="main">
+    <section class="page-banner banner-paint" aria-label="Photo &amp; video gallery">
+      <div class="container page-banner-grid">
+        <div class="page-banner-copy">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Gallery</span>
+          </nav>
+          <span class="eyebrow-chip"><span class="eyebrow-dot"></span>Gallery</span>
+          <h1>Photo &amp; video gallery</h1>
+          <p class="lede">Wall painting, wood polishing and false ceiling work, side by side. Filter by category or open any photo full screen.</p>
+        </div>
+        <div class="page-banner-media">
+          <img src="https://images.unsplash.com/photo-1474874055390-459bc92357f3?auto=format&fit=crop&w=1000&q=80" alt="A row of freshly painted, colourful building façades" width="1000" height="800" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="photos">
+      <div class="container">
+        <div class="gallery-filters" role="group" aria-label="Filter photos by category">
+          <button type="button" class="chip" data-filter="all" aria-pressed="true">All work</button>
+          <button type="button" class="chip" data-filter="wall" aria-pressed="false">Wall Painting</button>
+          <button type="button" class="chip" data-filter="wood" aria-pressed="false">Wood Polish</button>
+          <button type="button" class="chip" data-filter="ceiling" aria-pressed="false">False Ceiling</button>
+        </div>
+        <p style="margin:0 0 1.5rem;font-size:.92rem;color:var(--ink-faint)" id="result-count" aria-live="polite">Showing 14 photos</p>
+        <div class="gallery-grid">
+          <button type="button" class="gallery-item g-big" data-category="wall" data-caption="Interior wall being rolled with fresh emulsion" data-full="https://images.unsplash.com/photo-1717281234297-3def5ae3eee1?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1717281234297-3def5ae3eee1?auto=format&fit=crop&w=900&q=80" alt="Interior wall being rolled with fresh emulsion" loading="lazy">
+            <span class="tag" style="background:var(--ochre)">Wall Painting</span>
+            <span class="cap">Interior wall being rolled with fresh emulsion</span>
+          </button>
+          <button type="button" class="gallery-item " data-category="ceiling" data-caption="False ceiling with recessed lighting" data-full="https://images.unsplash.com/photo-1745242655021-d0b950c8b0da?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1745242655021-d0b950c8b0da?auto=format&fit=crop&w=650&q=80" alt="False ceiling with recessed lighting" loading="lazy">
+            <span class="tag" style="background:var(--petrol)">False Ceiling</span>
+            <span class="cap">False ceiling with recessed lighting</span>
+          </button>
+          <button type="button" class="gallery-item " data-category="wood" data-caption="A polished wooden dining table" data-full="https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=650&q=80" alt="A polished wooden dining table" loading="lazy">
+            <span class="tag" style="background:var(--wood)">Wood Polish</span>
+            <span class="cap">A polished wooden dining table</span>
+          </button>
+          <button type="button" class="gallery-item " data-category="wall" data-caption="Close-up of a hand rolling paint onto a wall" data-full="https://images.unsplash.com/photo-1693985120993-e9b203ce7631?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1693985120993-e9b203ce7631?auto=format&fit=crop&w=650&q=80" alt="Close-up of a hand rolling paint onto a wall" loading="lazy">
+            <span class="tag" style="background:var(--ochre)">Wall Painting</span>
+            <span class="cap">Close-up of a hand rolling paint onto a wall</span>
+          </button>
+          <button type="button" class="gallery-item g-wide" data-category="ceiling" data-caption="Decorative false ceiling design" data-full="https://images.unsplash.com/photo-1679308315803-690da39d8393?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1679308315803-690da39d8393?auto=format&fit=crop&w=900&q=80" alt="Decorative false ceiling design" loading="lazy">
+            <span class="tag" style="background:var(--petrol)">False Ceiling</span>
+            <span class="cap">Decorative false ceiling design</span>
+          </button>
+          <button type="button" class="gallery-item " data-category="wood" data-caption="A carpenter preparing wood before polishing" data-full="https://images.unsplash.com/photo-1779031242515-205111711b23?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1779031242515-205111711b23?auto=format&fit=crop&w=650&q=80" alt="A carpenter preparing wood before polishing" loading="lazy">
+            <span class="tag" style="background:var(--wood)">Wood Polish</span>
+            <span class="cap">A carpenter preparing wood before polishing</span>
+          </button>
+          <button type="button" class="gallery-item " data-category="wall" data-caption="Paint tin and brush for a colour consultation" data-full="https://images.unsplash.com/photo-1670940094923-6f75e4dc5c3a?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1670940094923-6f75e4dc5c3a?auto=format&fit=crop&w=650&q=80" alt="Paint tin and brush for a colour consultation" loading="lazy">
+            <span class="tag" style="background:var(--ochre)">Wall Painting</span>
+            <span class="cap">Paint tin and brush for a colour consultation</span>
+          </button>
+          <button type="button" class="gallery-item " data-category="ceiling" data-caption="A living room finished with a false ceiling" data-full="https://images.unsplash.com/photo-1768609239321-1cfe14893e80?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1768609239321-1cfe14893e80?auto=format&fit=crop&w=650&q=80" alt="A living room finished with a false ceiling" loading="lazy">
+            <span class="tag" style="background:var(--petrol)">False Ceiling</span>
+            <span class="cap">A living room finished with a false ceiling</span>
+          </button>
+          <button type="button" class="gallery-item g-wide" data-category="wood" data-caption="Close-up of a polished wooden door handle" data-full="https://images.unsplash.com/photo-1710880694426-e42d4714ef98?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1710880694426-e42d4714ef98?auto=format&fit=crop&w=900&q=80" alt="Close-up of a polished wooden door handle" loading="lazy">
+            <span class="tag" style="background:var(--wood)">Wood Polish</span>
+            <span class="cap">Close-up of a polished wooden door handle</span>
+          </button>
+          <button type="button" class="gallery-item " data-category="wall" data-caption="Assorted brushes used for wall painting" data-full="https://images.unsplash.com/photo-1520856990214-7a9e59dd5ff7?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1520856990214-7a9e59dd5ff7?auto=format&fit=crop&w=650&q=80" alt="Assorted brushes used for wall painting" loading="lazy">
+            <span class="tag" style="background:var(--ochre)">Wall Painting</span>
+            <span class="cap">Assorted brushes used for wall painting</span>
+          </button>
+          <button type="button" class="gallery-item " data-category="ceiling" data-caption="Ceiling design with skylights and recessed lighting" data-full="https://images.unsplash.com/photo-1749571598439-d307cce8e870?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1749571598439-d307cce8e870?auto=format&fit=crop&w=650&q=80" alt="Ceiling design with skylights and recessed lighting" loading="lazy">
+            <span class="tag" style="background:var(--petrol)">False Ceiling</span>
+            <span class="cap">Ceiling design with skylights and recessed lighting</span>
+          </button>
+          <button type="button" class="gallery-item " data-category="wall" data-caption="Colour palette and brushes for wall designing" data-full="https://images.unsplash.com/photo-1471666875520-c75081f42081?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1471666875520-c75081f42081?auto=format&fit=crop&w=650&q=80" alt="Colour palette and brushes for wall designing" loading="lazy">
+            <span class="tag" style="background:var(--ochre)">Wall Painting</span>
+            <span class="cap">Colour palette and brushes for wall designing</span>
+          </button>
+          <button type="button" class="gallery-item " data-category="wall" data-caption="Freshly painted exterior building façades" data-full="https://images.unsplash.com/photo-1474874055390-459bc92357f3?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1474874055390-459bc92357f3?auto=format&fit=crop&w=650&q=80" alt="Freshly painted exterior building façades" loading="lazy">
+            <span class="tag" style="background:var(--ochre)">Wall Painting</span>
+            <span class="cap">Freshly painted exterior building façades</span>
+          </button>
+          <button type="button" class="gallery-item " data-category="ceiling" data-caption="A living room with a designer false ceiling" data-full="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=80">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=650&q=80" alt="A living room with a designer false ceiling" loading="lazy">
+            <span class="tag" style="background:var(--petrol)">False Ceiling</span>
+            <span class="cap">A living room with a designer false ceiling</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="videos">
+      <div class="container">
+        <div class="section-head">
+          <h2>Work on video</h2>
+          <p class="lede">Placeholder clips for now — these will be replaced with footage of our own completed jobs.</p>
+        </div>
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-frame">
+              <!-- TODO: replace the src below with the real Wall Painting Walkthrough video once it's ready -->
+              <video id="v-g-wall" controls preload="metadata" poster="https://images.unsplash.com/photo-1717281234297-3def5ae3eee1?auto=format&fit=crop&w=900&q=80">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                Your browser does not support embedded video. <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Download the video</a> instead.
+              </video>
+            </div>
+            <div class="video-card-body">
+              <h3>Wall Painting Walkthrough</h3>
+              <p>A placeholder clip for now — swap this for real wall painting footage.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-frame">
+              <!-- TODO: replace the src below with the real Wood Polishing in Progress video once it's ready -->
+              <video id="v-g-wood" controls preload="metadata" poster="https://images.unsplash.com/photo-1779031242515-205111711b23?auto=format&fit=crop&w=900&q=80">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                Your browser does not support embedded video. <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Download the video</a> instead.
+              </video>
+            </div>
+            <div class="video-card-body">
+              <h3>Wood Polishing in Progress</h3>
+              <p>A placeholder clip for now — swap this for real wood polishing footage.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-frame">
+              <!-- TODO: replace the src below with the real False Ceiling Installation video once it's ready -->
+              <video id="v-g-ceil" controls preload="metadata" poster="https://images.unsplash.com/photo-1679308315803-690da39d8393?auto=format&fit=crop&w=900&q=80">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                Your browser does not support embedded video. <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Download the video</a> instead.
+              </video>
+            </div>
+            <div class="video-card-body">
+              <h3>False Ceiling Installation</h3>
+              <p>A placeholder clip for now — swap this for real false ceiling footage.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-band" aria-label="Enquire">
+      <div class="container cta-inner">
+        <div>
+          <h2>Ready to get your walls, wood or ceiling sorted?</h2>
+          <p>Send us a few details and we'll get back with an estimate — usually the same day.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-ochre btn-lg">Get a Free Estimate</a>
+          <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>Chat on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="index.html" class="brand" aria-label="Rithwin's Pro Painters, home">
+            <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <rect x="6" y="8" width="28" height="12" rx="4" fill="none" stroke="#211F1B" stroke-width="1.6"/>
+          <rect x="7.2" y="9.2" width="8.5" height="9.6" fill="#E08F0F"/>
+          <rect x="15.7" y="9.2" width="8.5" height="9.6" fill="#8C5A28"/>
+          <rect x="24.2" y="9.2" width="8.5" height="9.6" fill="#135951"/>
+          <path d="M20 20 L20 26 L27 33" stroke="#211F1B" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <circle cx="27" cy="33" r="2.3" fill="#211F1B"/>
+        </svg>
+            <span class="brand-text"><span class="brand-name">Rithwin's</span><span class="brand-sub">PRO PAINTERS</span></span>
+          </a>
+          <p>Wall painting, wood polishing and false ceiling work for homes and shops across Polur taluk.</p>
+          <div class="footer-address">
+            <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Near Bus Stand, Kannigapuram, Polur Taluk, Tiruvannamalai District, Tamil Nadu – 606903</span>
+            <span><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+919876543210">+91 98765 43210</a></span>
+            <span><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:rithwinspropainters@gmail.com">rithwinspropainters@gmail.com</a></span>
+          </div>
+          <div class="socials">
+            <a href="https://wa.me/919876543210" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Our work</h4>
+          <ul class="footer-links">
+            <li><a href="wall-painting.html">Wall Painting</a></li>
+            <li><a href="wall-painting.html#wall-designing">Wall Designing</a></li>
+            <li><a href="wood-polish.html">Wood Polish</a></li>
+            <li><a href="false-ceiling.html">False Ceiling</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Quick links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html">Photos &amp; Videos</a></li>
+            <li><a href="contact.html">Get a Free Estimate</a></li>
+            <li><a href="contact.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Areas we serve</h4>
+          <ul class="footer-links">
+            <li><a href="contact.html">Kannigapuram</a></li><li><a href="contact.html">Polur</a></li><li><a href="contact.html">Kalambur</a></li><li><a href="contact.html">Arani</a></li><li><a href="contact.html">Vandavasi</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span id="year">2026</span> Rithwin's Pro Painters. All rights reserved.</span>
+        <!-- Designer credit: replace href="#" with the TheWebVue website address -->
+        <p class="credit">Website designed by <a href="#" rel="noopener">TheWebVue</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
+    <button type="button" class="lb-btn lb-close" id="lb-close" aria-label="Close image viewer"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    <button type="button" class="lb-btn lb-prev" id="lb-prev" aria-label="Previous image"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+    <button type="button" class="lb-btn lb-next" id="lb-next" aria-label="Next image"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+    <div class="lb-stage" id="lb-stage">
+      <figure class="lb-figure">
+        <img id="lb-img" src="" alt="">
+        <figcaption><span id="lb-cap"></span><span class="lb-count" id="lb-count"></span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
