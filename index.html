@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rithwin's Pro Painters | Wall Painting, Wood Polish &amp; False Ceiling</title>
-  <meta name="description" content="Rithwin's Pro Painters handles wall painting, wood polishing and false ceiling work for homes and shops around Polur and Tiruvannamalai district.">
+  <meta name="description" content="Rithwin's Pro Painters handles wall painting, wood polishing and false ceiling work for homes and shops. Based in Polur, Tamil Nadu, with a 20-member team serving clients across India.">
   <meta name="theme-color" content="#211F1B">
+  <script>(function(){try{if(sessionStorage.getItem('rppIntroPlayed')){document.documentElement.className+=' intro-skip';}}catch(e){}})();</script>
+  <noscript><style>.intro-overlay{display:none!important}</style></noscript>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,13 +19,90 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
+  <div class="intro-overlay" id="intro-overlay" role="presentation" aria-hidden="true">
+    <button type="button" class="intro-skip-btn" id="intro-skip">Skip</button>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="intro-goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" result="goo"/>
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="intro-stage">
+      <svg class="intro-bucket" viewBox="0 0 200 220" aria-hidden="true">
+        <defs>
+          <linearGradient id="canGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#cfc7b4"/>
+            <stop offset="14%" stop-color="#f6f1e4"/>
+            <stop offset="38%" stop-color="#fffdf8"/>
+            <stop offset="66%" stop-color="#eae3d1"/>
+            <stop offset="100%" stop-color="#b9b096"/>
+          </linearGradient>
+          <linearGradient id="rimGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fffdf8"/>
+            <stop offset="100%" stop-color="#c7bea8"/>
+          </linearGradient>
+          <linearGradient id="bandGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#E08F0F"/>
+            <stop offset="50%" stop-color="#8C5A28"/>
+            <stop offset="100%" stop-color="#135951"/>
+          </linearGradient>
+        </defs>
+
+        <ellipse class="intro-bucket-shadow" cx="100" cy="207" rx="60" ry="11" fill="rgba(20,18,14,.28)"/>
+
+        <g class="intro-bucket-body">
+          <!-- cylindrical can body -->
+          <path d="M44,88 C44,84 44,82 44,80 L44,190 C44,197 68,202 100,202 C132,202 156,197 156,190 L156,80 C156,82 156,84 156,88 Z"
+                fill="url(#canGrad)" stroke="#1a170f" stroke-width="4.5" stroke-linejoin="round"/>
+          <!-- base ellipse for a touch of 3D at the foot -->
+          <path d="M44,186 C44,193 68,198 100,198 C132,198 156,193 156,186" fill="none" stroke="#1a170f" stroke-width="2" opacity=".35"/>
+          <!-- glossy highlight streak -->
+          <path d="M64,96 C58,130 58,160 66,192" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="10" stroke-linecap="round"/>
+          <path d="M148,98 C153,132 152,160 145,190" fill="none" stroke="rgba(20,18,14,.10)" stroke-width="11" stroke-linecap="round"/>
+          <!-- rim -->
+          <ellipse cx="100" cy="80" rx="58" ry="15" fill="url(#rimGrad)" stroke="#1a170f" stroke-width="4.5"/>
+          <!-- wire bail handle -->
+          <path d="M56,74 C56,30 144,30 144,74" fill="none" stroke="#1a170f" stroke-width="4.5" stroke-linecap="round"/>
+          <circle cx="56" cy="74" r="6" fill="#1a170f"/>
+          <circle cx="144" cy="74" r="6" fill="#1a170f"/>
+          <!-- open top with visible (mixed) paint pool -->
+          <ellipse cx="100" cy="78" rx="47" ry="10.5" fill="#1c1811"/>
+          <ellipse cx="100" cy="77" rx="41" ry="8.5" fill="url(#bandGrad)"/>
+          <ellipse cx="86" cy="74" rx="12" ry="3" fill="rgba(255,255,255,.30)"/>
+          <!-- small permanent drips already clinging to the rim, like a can that's just been used -->
+          <path d="M78,90 C75,99 72,108 78,115 C84,108 81,99 78,90 Z" fill="#E08F0F" stroke="#1a170f" stroke-width="2"/>
+          <path d="M129,92 C126,100 124,107 129,113 C134,107 132,100 129,92 Z" fill="#8C5A28" stroke="#1a170f" stroke-width="2"/>
+        </g>
+      </svg>
+
+      <span class="intro-stream intro-stream-1" aria-hidden="true"></span>
+      <span class="intro-stream intro-stream-2" aria-hidden="true"></span>
+      <span class="intro-stream intro-stream-3" aria-hidden="true"></span>
+    </div>
+
+    <div class="intro-splash" aria-hidden="true">
+      <span class="intro-blob intro-blob-paint"></span>
+      <span class="intro-blob intro-blob-wood"></span>
+      <span class="intro-blob intro-blob-ceil"></span>
+    </div>
+
+    <div class="intro-reveal" aria-hidden="true">
+      <span class="intro-brand">Rithwin's Pro Painters</span>
+    </div>
+  </div>
+
   <div class="topbar">
     <div class="container topbar-inner">
       <div class="topbar-links">
-        <a href="tel:+919876543210"><i class="fa-solid fa-phone" aria-hidden="true"></i>+91 98765 43210</a>
+        <a href="tel:+919597639966"><i class="fa-solid fa-phone" aria-hidden="true"></i>+91 95976 39966</a>
         <span><i class="fa-solid fa-clock" aria-hidden="true"></i>Mon–Sat, 8:00 AM – 7:00 PM</span>
       </div>
-      <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Serving Polur Taluk &amp; Tiruvannamalai District</span>
+      <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Based in Polur — Projects All Over India</span>
     </div>
   </div>
 
@@ -53,11 +132,11 @@
           <li><a class="nav-link" href="gallery.html">Gallery</a></li>
           <li><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
-        <a href="tel:+919876543210" class="btn btn-ochre nav-cta-mobile">Call Now</a>
+        <a href="tel:+919597639966" class="btn btn-ochre nav-cta-mobile">Call Now</a>
       </nav>
 
       <div class="nav-actions">
-        <a href="tel:+919876543210" class="btn btn-ochre btn-sm nav-cta">Call Now</a>
+        <a href="tel:+919597639966" class="btn btn-ochre btn-sm nav-cta">Call Now</a>
         <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
           <span></span><span></span><span></span>
         </button>
@@ -66,7 +145,7 @@
   </header>
   <div class="nav-backdrop" id="nav-backdrop"></div>
 
-  <a class="wa-float" href="https://wa.me/919876543210" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <a class="wa-float" href="https://wa.me/919597639966" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
     <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
   </a>
 
@@ -74,19 +153,19 @@
     <section class="hero" id="home">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow-chip"><span class="eyebrow-dot" style="background:var(--ochre)"></span>Polur Taluk &amp; Tiruvannamalai District</span>
+          <span class="eyebrow-chip"><span class="eyebrow-dot" style="background:var(--ochre)"></span>Based in Polur, Tamil Nadu — Projects All Over India</span>
           <h1 class="hero-title"><span>From Bare Wall to</span><span>Finished Room.</span></h1>
-          <p class="lede">Rithwin's Pro Painters handles wall painting, wood polishing and false ceiling work for homes and shops — proper surface preparation, quality materials, and a clean handover every time.</p>
+          <p class="lede">Rithwin's Pro Painters handles wall painting, wood polishing and false ceiling work for homes and shops — proper surface preparation, quality materials, and a clean handover every time. Based in Polur, our 20-member team also travels for larger residential and commercial projects across India.</p>
 
           <div class="hero-actions">
             <a href="contact.html" class="btn btn-ochre btn-lg">Get a Free Estimate</a>
-            <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp Us</a>
+            <a href="https://wa.me/919597639966" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp Us</a>
           </div>
 
           <div class="hero-stats" id="hero-stats">
             <div class="hero-stat"><strong><span data-count="9">9</span>+</strong><span>Years on the Tools</span></div>
             <div class="hero-stat"><strong><span data-count="400">400</span>+</strong><span>Homes &amp; Shops Done</span></div>
-            <div class="hero-stat"><strong><span data-count="6">6</span></strong><span>Skilled Team Members</span></div>
+            <div class="hero-stat"><strong><span data-count="20">20</span></strong><span>Skilled Team Members</span></div>
           </div>
 
           <p class="hero-swatch-label">Our three trades</p>
@@ -181,7 +260,8 @@
         <div class="stat-band" id="stat-band">
           <div class="stat-block"><strong><span data-count="9">9</span>+</strong><span>Years in the Trade</span></div>
           <div class="stat-block"><strong><span data-count="400">400</span>+</strong><span>Projects Completed</span></div>
-          <div class="stat-block"><strong>30+ km</strong><span>Service Radius Around Polur</span></div>
+          <div class="stat-block"><strong><span data-count="20">20</span>+</strong><span>Skilled Team Members</span></div>
+          <div class="stat-block"><strong>Pan-India</strong><span>Available for Bulk &amp; Corporate Projects</span></div>
           <div class="stat-block"><strong>100%</strong><span>Sites Cleaned Up Before We Leave</span></div>
         </div>
       </div>
@@ -204,7 +284,7 @@
           </div>
           <div class="feature-item">
             <div class="feature-icon"><i class="fa-solid fa-user-check" aria-hidden="true"></i></div>
-            <div><h3>Skilled, Supervised Team</h3><p>Every job is led by an experienced painter on site, not a trainee learning on your walls.</p></div>
+            <div><h3>Skilled, Supervised Team</h3><p>A 20-member team of painters, polishers and ceiling fitters, with every job led by an experienced supervisor on site — not a trainee learning on your walls.</p></div>
           </div>
           <div class="feature-item">
             <div class="feature-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
@@ -232,8 +312,8 @@
           <div class="video-card">
             <div class="video-frame">
               <!-- TODO: replace the src below with the real Wall Painting in Progress video once it's ready -->
-              <video id="v-paint" controls preload="metadata" poster="https://images.unsplash.com/photo-1717281234297-3def5ae3eee1?auto=format&fit=crop&w=900&q=80">
-                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+              <video id="v-paint" controls preload="metadata" poster="assets/p_1.jpeg">
+                <source src="assets_2/vid_p_2.mp4" type="video/mp4">
                 Your browser does not support embedded video. <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Download the video</a> instead.
               </video>
             </div>
@@ -245,8 +325,8 @@
           <div class="video-card">
             <div class="video-frame">
               <!-- TODO: replace the src below with the real Wood Polishing Work video once it's ready -->
-              <video id="v-wood" controls preload="metadata" poster="https://images.unsplash.com/photo-1779031242515-205111711b23?auto=format&fit=crop&w=900&q=80">
-                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+              <video id="v-wood" controls preload="metadata" poster="assets/w_4.jpeg">
+                <source src="assets_2/vid_wood.mp4" type="video/mp4">
                 Your browser does not support embedded video. <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Download the video</a> instead.
               </video>
             </div>
@@ -258,8 +338,8 @@
           <div class="video-card">
             <div class="video-frame">
               <!-- TODO: replace the src below with the real False Ceiling Installation video once it's ready -->
-              <video id="v-ceil" controls preload="metadata" poster="https://images.unsplash.com/photo-1679308315803-690da39d8393?auto=format&fit=crop&w=900&q=80">
-                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+              <video id="v-ceil" controls preload="metadata" poster="assets/s_1.jpeg">
+                <source src="assets_2/vid_ceil.mp4" type="video/mp4">
                 Your browser does not support embedded video. <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Download the video</a> instead.
               </video>
             </div>
@@ -280,16 +360,16 @@
         </div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem" class="preview-grid">
           <a class="tile-shot" href="gallery.html" style="border-radius:8px;overflow:hidden;display:block;aspect-ratio:1/1;background:#211F1B">
-            <img src="https://images.unsplash.com/photo-1693985120993-e9b203ce7631?auto=format&fit=crop&w=500&q=80" alt="A painter’s hand rolling paint onto a wall" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+            <img src="assets/p_11.jpeg" alt="A painter’s hand rolling paint onto a wall" loading="lazy" style="width:100%;height:100%;object-fit:cover">
           </a>
           <a class="tile-shot" href="gallery.html" style="border-radius:8px;overflow:hidden;display:block;aspect-ratio:1/1;background:#211F1B">
-            <img src="https://images.unsplash.com/photo-1710880694426-e42d4714ef98?auto=format&fit=crop&w=500&q=80" alt="Close-up of a polished wooden door handle" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+            <img src="assets/s_18.jpeg" alt="Close-up of a polished wooden door handle" loading="lazy" style="width:100%;height:100%;object-fit:cover">
           </a>
           <a class="tile-shot" href="gallery.html" style="border-radius:8px;overflow:hidden;display:block;aspect-ratio:1/1;background:#211F1B">
-            <img src="https://images.unsplash.com/photo-1745242655021-d0b950c8b0da?auto=format&fit=crop&w=500&q=80" alt="Modern false ceiling with recessed lighting" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+            <img src="assets/w_2.jpeg" alt="Modern false ceiling with recessed lighting" loading="lazy" style="width:100%;height:100%;object-fit:cover">
           </a>
           <a class="tile-shot" href="gallery.html" style="border-radius:8px;overflow:hidden;display:block;aspect-ratio:1/1;background:#211F1B">
-            <img src="https://images.unsplash.com/photo-1474874055390-459bc92357f3?auto=format&fit=crop&w=500&q=80" alt="Freshly painted exterior building façades" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+            <img src="assets/p_14.jpeg" alt="Freshly painted exterior building façades" loading="lazy" style="width:100%;height:100%;object-fit:cover">
           </a>
         </div>
         <div style="margin-top:2rem">
@@ -338,7 +418,7 @@
         </div>
         <div class="cta-actions">
           <a href="contact.html" class="btn btn-ochre btn-lg">Get a Free Estimate</a>
-          <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>Chat on WhatsApp</a>
+          <a href="https://wa.me/919597639966" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>Chat on WhatsApp</a>
         </div>
       </div>
     </section>
@@ -360,14 +440,14 @@
         </svg>
             <span class="brand-text"><span class="brand-name">Rithwin's</span><span class="brand-sub">PRO PAINTERS</span></span>
           </a>
-          <p>Wall painting, wood polishing and false ceiling work for homes and shops across Polur taluk.</p>
+          <p>Wall painting, wood polishing and false ceiling work for homes and shops — based in Polur, working across India.</p>
           <div class="footer-address">
             <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Near Bus Stand, Kannigapuram, Polur Taluk, Tiruvannamalai District, Tamil Nadu – 606903</span>
-            <span><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+919876543210">+91 98765 43210</a></span>
-            <span><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:rithwinspropainters@gmail.com">rithwinspropainters@gmail.com</a></span>
+            <span><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+919597639966">+91 95976 39966</a></span>
+            <span><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:rithwinpaintersdecorators@gmail.com">rithwinpaintersdecorators@gmail.com</a></span>
           </div>
           <div class="socials">
-            <a href="https://wa.me/919876543210" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://wa.me/919597639966" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
             <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
             <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
@@ -398,7 +478,7 @@
         <div>
           <h4>Areas we serve</h4>
           <ul class="footer-links">
-            <li><a href="contact.html">Kannigapuram</a></li><li><a href="contact.html">Polur</a></li><li><a href="contact.html">Kalambur</a></li><li><a href="contact.html">Arani</a></li><li><a href="contact.html">Vandavasi</a></li>
+            <li><a href="contact.html">All Over India</a></li>
           </ul>
         </div>
       </div>
