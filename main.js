@@ -11,6 +11,52 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasIO = 'IntersectionObserver' in window;
 
+  /* ---------- Intro / preloader (paint bucket pour) ----------
+     Plays once per browser session, on whichever page the visitor opens
+     first; every page after that skips it via the html.intro-skip class
+     an inline script in <head> already set (see build.py's head()), so
+     there is no flash. */
+  (() => {
+    const intro = $('#intro-overlay');
+    if (!intro) return;
+    if (document.documentElement.classList.contains('intro-skip')) {
+      intro.style.display = 'none';
+      return;
+    }
+    try { sessionStorage.setItem('rppIntroPlayed', '1'); } catch (e) { /* private mode: intro may replay, harmless */ }
+
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      intro.style.display = 'none';
+      document.body.classList.remove('no-scroll');
+    };
+
+    if (reduceMotion) { finish(); return; }
+
+    document.body.classList.add('no-scroll');
+    const skip = () => {
+      if (done) return;
+      intro.classList.add('is-skip');
+      setTimeout(finish, 420);
+    };
+    const skipBtn = $('#intro-skip', intro);
+    if (skipBtn) skipBtn.addEventListener('click', skip);
+    intro.addEventListener('click', e => { if (e.target === intro) skip(); });
+
+    requestAnimationFrame(() => intro.classList.add('is-enter'));
+    setTimeout(() => intro.classList.add('is-tip'), 550);      // bucket lifts, tips, streams start
+    setTimeout(() => intro.classList.add('is-splash'), 1450);  // colors hit the floor, blobs merge
+    setTimeout(() => intro.classList.add('is-reveal'), 2750);  // brand name paints on
+    setTimeout(() => intro.classList.add('is-exit'), 3900);    // whole overlay fades
+
+    intro.addEventListener('animationend', e => {
+      if (e.target === intro && e.animationName === 'intro-exit') finish();
+    });
+    setTimeout(finish, 4800); // fail-safe in case the animationend event doesn't fire
+  })();
+
   /* ---------- Image fallback (if a photo URL fails to load) ---------- */
   const FALLBACK = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">' +
@@ -27,9 +73,27 @@
 
   /* ---------- Sticky header shadow ---------- */
   const header = $('#header');
+
+  /* ---------- Gallery: sticky jump-nav shadow + active-section highlight ----------
+     The bar itself just needs CSS (position:sticky); this only adds the
+     "picked up off the page" shadow once it's actually pinned, and marks
+     whichever category is currently in view so it's clear which section
+     you're scrolled into. */
+  const galFilters = $('#gallery-filters');
+  const galChips = galFilters ? $$('.chip', galFilters) : [];
+  const galSections = ['gal-wall', 'gal-wood', 'gal-ceiling']
+    .map(id => document.getElementById(id)).filter(Boolean);
+  const headerH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 76;
+
   let ticking = false;
   function onScroll() {
     header.classList.toggle('is-scrolled', (window.scrollY || window.pageYOffset) > 12);
+    if (galFilters) {
+      galFilters.classList.toggle('is-stuck', galFilters.getBoundingClientRect().top <= headerH + .5);
+      let activeId = null;
+      galSections.forEach(sec => { if (sec.getBoundingClientRect().top <= headerH + 48) activeId = sec.id; });
+      galChips.forEach(c => c.classList.toggle('is-active', !!activeId && c.getAttribute('href') === '#' + activeId));
+    }
     ticking = false;
   }
   window.addEventListener('scroll', () => {
@@ -91,25 +155,11 @@
     }
   }
 
-  /* ---------- Gallery filter chips ---------- */
-  const chips = $$('.chip[data-filter]');
-  if (chips.length) {
-    const items = $$('.gallery-item');
-    const count = $('#result-count');
-    chips.forEach(chip => chip.addEventListener('click', () => {
-      const wanted = chip.dataset.filter;
-      let shown = 0;
-      chips.forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
-      items.forEach(item => {
-        const match = wanted === 'all' || item.dataset.category === wanted;
-        item.hidden = !match;
-        if (match) shown++;
-      });
-      if (count) count.textContent = 'Showing ' + shown + ' photo' + (shown === 1 ? '' : 's');
-    }));
-  }
-
-  /* ---------- Lightbox ---------- */
+  /* ---------- Lightbox ----------
+     The gallery page is split into three category sections (Wall Painting,
+     Wood Polish, False Ceiling). Opening any photo scopes prev/next
+     navigation to just that photo's own category/section, so browsing
+     never drifts into a different section's images. */
   const lb = $('#lightbox');
   const shots = $$('.gallery-item');
   if (lb && shots.length) {
@@ -120,12 +170,17 @@
     const lbPrev = $('#lb-prev');
     const lbNext = $('#lb-next');
     let current = 0;
+    let currentCategory = null;
     let lastFocus = null;
 
-    function visible() { return shots.filter(s => !s.hidden); }
+    function categoryShots() {
+      return currentCategory
+        ? shots.filter(s => s.dataset.category === currentCategory)
+        : shots;
+    }
 
     const showShot = i => {
-      const list = visible();
+      const list = categoryShots();
       if (!list.length) return;
       current = (i + list.length) % list.length;
       const item = list[current];
@@ -140,7 +195,8 @@
 
     const openLightbox = item => {
       lastFocus = document.activeElement;
-      const list = visible();
+      currentCategory = item.dataset.category;
+      const list = categoryShots();
       showShot(list.indexOf(item));
       lb.classList.add('is-open');
       lb.setAttribute('aria-hidden', 'false');
