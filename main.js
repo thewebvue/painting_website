@@ -49,12 +49,12 @@
     setTimeout(() => intro.classList.add('is-tip'), 550);      // bucket lifts, tips, streams start
     setTimeout(() => intro.classList.add('is-splash'), 1450);  // colors hit the floor, blobs merge
     setTimeout(() => intro.classList.add('is-reveal'), 2750);  // brand name paints on
-    setTimeout(() => intro.classList.add('is-exit'), 3900);    // whole overlay fades
+    setTimeout(() => intro.classList.add('is-exit'), 4500);    // whole overlay fades -- holds the finished brand name on screen a bit longer before fading
 
     intro.addEventListener('animationend', e => {
       if (e.target === intro && e.animationName === 'intro-exit') finish();
     });
-    setTimeout(finish, 4800); // fail-safe in case the animationend event doesn't fire
+    setTimeout(finish, 5400); // fail-safe in case the animationend event doesn't fire
   })();
 
   /* ---------- Image fallback (if a photo URL fails to load) ---------- */
