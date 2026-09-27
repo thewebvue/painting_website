@@ -242,7 +242,7 @@
      No backend on a plain HTML/CSS/JS site, so the enquiry is sent as a
      ready-to-send WhatsApp message. Replace WHATSAPP_NUMBER below once
      the real business WhatsApp number is confirmed. */
-  const WHATSAPP_NUMBER = '919876543210'; // TODO: replace with the real WhatsApp number, country code first, no + or spaces
+  const WHATSAPP_NUMBER = '919597639966'; // TODO: replace with the real WhatsApp number, country code first, no + or spaces
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   const form = $('#enquiry-form');
 
